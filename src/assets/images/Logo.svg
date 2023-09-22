@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="98.23" height="20" viewBox="0 0 98.23 20">
+  <g id="Logo" transform="translate(-76.98 -107.682)">
+    <g id="education" transform="translate(76.98 108.259)">
+      <g id="Group_2" data-name="Group 2" transform="translate(0 0)">
+        <g id="Group_1" data-name="Group 1" transform="translate(0 0)">
+          <path id="Path_7" data-name="Path 7" d="M35.713,35.049h0a.87.87,0,0,0-.618.256.879.879,0,0,0-.26.626V49.168a.886.886,0,0,0,.884.882c2.055,0,5.5.433,7.872,2.918V39.116a.846.846,0,0,0-.121-.447C41.518,35.531,37.773,35.054,35.713,35.049Z" transform="translate(-31.94 -35.049)" fill="#a03037"/>
+          <path id="Path_8" data-name="Path 8" d="M165.506,49.167V35.931a.879.879,0,0,0-.26-.626.87.87,0,0,0-.618-.256h0c-2.059,0-5.8.482-7.754,3.621a.846.846,0,0,0-.121.447V52.967c2.375-2.485,5.817-2.913,7.872-2.918A.886.886,0,0,0,165.506,49.167Z" transform="translate(-143.732 -35.048)" fill="#a03037"/>
+          <path id="Path_9" data-name="Path 9" d="M181.024,71.8h-.64V82.867a2.258,2.258,0,0,1-2.251,2.253,9.79,9.79,0,0,0-6.651,2.271,21.249,21.249,0,0,1,9.345.18.883.883,0,0,0,1.08-.86V72.684A.883.883,0,0,0,181.024,71.8Z" transform="translate(-157.24 -68.749)" fill="#a03037"/>
+          <path id="Path_10" data-name="Path 10" d="M1.523,82.867V71.8H.883A.884.884,0,0,0,0,72.684V86.711a.883.883,0,0,0,1.08.86,21.248,21.248,0,0,1,9.344-.18A9.79,9.79,0,0,0,3.773,85.12,2.258,2.258,0,0,1,1.523,82.867Z" transform="translate(0 -68.749)" fill="#a03037"/>
+        </g>
+      </g>
+    </g>
+    <text id="bookstore" transform="translate(106.21 123.682)" fill="#a03037" font-size="15" font-family="Roboto-Regular, Roboto"><tspan x="0" y="0">Bookstore</tspan></text>
+  </g>
+</svg>
