@@ -1,5 +1,5 @@
 import {View, Text, FlatList, TouchableOpacity} from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import GlobalStylesheet from '../utilities/GlobalStyleSheet';
 import * as Constant from '../utilities/Constant';
 import LogoSVG from '../assets/images/Logo.svg';
@@ -42,6 +42,7 @@ const Home = () => {
       price: 1200,
     },
   ];
+
   return (
     <View style={styles.screen_container}>
       <View style={styles.home_header}>
@@ -61,11 +62,7 @@ const Home = () => {
       <FlatList
         data={items}
         numColumns={2}
-        renderItem={({item}) => (
-          <TouchableOpacity>
-            <BookCard value={item} />
-          </TouchableOpacity>
-        )}
+        renderItem={({item}) => <BookCard value={item} />}
       />
     </View>
   );

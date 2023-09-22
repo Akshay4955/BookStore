@@ -11,6 +11,7 @@ export const Color = {
   //   mediumColor: '#27292E',
   lightColor: '#9D9D9D',
   borderColor: '#E2E2E2',
+  description_text: '#888888',
 
   //   error: 'red',
 };
@@ -31,18 +32,18 @@ export const margin = {
   //   modalMargin: 40,
   item_no: 27,
   extralarge: 100,
-  //   headerMargin: 220,
+  closeMargin: 180,
   //   footerMargin: 320,
 };
 export const width = {
   //   verySmall: scaleWidth(25),
-  //   small: scaleWidth(70),
-  medium: scaleWidth(110),
+  small: scaleWidth(70),
   imageWidth: scaleWidth(100),
+  medium: scaleWidth(110),
   BookCard: scaleWidth(158),
   //   large: scaleWidth(240),
   //   label: scaleWidth(300),
-  extralarge: scaleWidth(370),
+  extralarge: scaleWidth(360),
   full: scaleWidth(410),
 };
 export const height = {
@@ -51,11 +52,11 @@ export const height = {
   small: scaleHeight(40),
   //   profilePic: scaleHeight(70),
   //   medium: scaleHeight(60),
-  //   large: scaleHeight(90),
+  large: scaleHeight(90),
   imageHeight: scaleHeight(125),
   imageContainerHeight: scaleHeight(150),
   BookCard: scaleHeight(270),
-  //   modalHeight: scaleHeight(350),
+  modalHeight: scaleHeight(450),
   //   extralarge: scaleHeight(800),
 };
 

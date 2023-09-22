@@ -6,28 +6,45 @@ import {
   Button,
   TouchableOpacity,
 } from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import * as Constant from '../utilities/Constant';
 import AddWishlist from '../assets/images/Add to whishlist.svg';
-import {ownerSVGElement} from 'react-native-svg/lib/typescript/elements/Shape';
+import BookInfoModal from '../components/BookInfoModal';
 
 const BookCard = value => {
+  const [showModal, setShowModal] = useState(false);
+  const handleItemPress = () => {
+    setShowModal(true);
+  };
+  const handleBackPress = () => {
+    setShowModal(false);
+  };
   return (
     <View style={styles.container}>
-      <View style={styles.image_container}>
-        <Image
-          source={require('../assets/images/book.png')}
-          style={styles.image}></Image>
-      </View>
-      <Text style={styles.book_name}>{value.value.bookName}</Text>
-      <Text style={styles.author_name}>by {value.value.author}</Text>
-      <Text style={styles.price}>Rs {value.value.price}</Text>
+      <TouchableOpacity onPress={handleItemPress}>
+        <View style={styles.image_container}>
+          <Image
+            source={require('../assets/images/book.png')}
+            style={styles.image}></Image>
+        </View>
+        <Text style={styles.book_name}>{value.value.bookName}</Text>
+        <Text style={styles.author_name}>by {value.value.author}</Text>
+        <Text style={styles.price}>Rs {value.value.price}</Text>
+      </TouchableOpacity>
+
       <View style={styles.button_container}>
-        <AddWishlist width={27} height={27} style={styles.header_icon} />
+        <TouchableOpacity>
+          <AddWishlist width={27} height={27} style={styles.header_icon} />
+        </TouchableOpacity>
         <TouchableOpacity style={styles.button}>
           <Text style={styles.button_text}>ADD TO BAG</Text>
         </TouchableOpacity>
       </View>
+      <BookInfoModal
+        modalVisible={showModal}
+        handleBackPress={handleBackPress}
+        item={value.value.price}
+      />
     </View>
   );
 };
