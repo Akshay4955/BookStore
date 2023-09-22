@@ -12,6 +12,7 @@ export const Color = {
   lightColor: '#9D9D9D',
   borderColor: '#E2E2E2',
   description_text: '#888888',
+  addedToBagColor: '#FFE7E8',
 
   //   error: 'red',
 };
@@ -40,6 +41,7 @@ export const width = {
   small: scaleWidth(70),
   imageWidth: scaleWidth(100),
   medium: scaleWidth(110),
+  large: scaleWidth(143),
   BookCard: scaleWidth(158),
   //   large: scaleWidth(240),
   //   label: scaleWidth(300),
@@ -71,7 +73,7 @@ export const fontSize = {
   verySmall: scaleSize(12),
   price: scaleSize(14),
   small: scaleSize(16),
-  //   medium: scaleSize(20),
+  medium: scaleSize(20),
   //   large: scaleSize(24),
   //   extralarge: scaleSize(40),
 };
