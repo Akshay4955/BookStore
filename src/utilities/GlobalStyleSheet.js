@@ -24,9 +24,33 @@ const GlobalStylesheet = () => {
       alignItems: 'center',
       borderRadius: Constant.borderRadius.small,
     },
+    search_input_container: {
+      flexDirection: 'row',
+      height: Constant.height.medium,
+      width: Constant.width.search,
+      borderColor: Constant.Color.data_color,
+      borderWidth: Constant.borderWidth.small,
+      borderRadius: Constant.borderRadius.small,
+      margin: Constant.margin.large,
+    },
     header_icon: {
       marginLeft: Constant.margin.large,
       color: Constant.Color.data_color,
+    },
+    text_input: {
+      height: Constant.height.small,
+      width: Constant.width.BookCard,
+      color: 'black',
+      alignSelf: 'center',
+      marginLeft: Constant.margin.large,
+      fontFamily: 'Lato',
+      fontSize: Constant.fontSize.small,
+    },
+    search_text: {
+      fontFamily: 'Lato',
+      fontSize: Constant.fontSize.small,
+      marginLeft: Constant.margin.large,
+      color: Constant.Color.lightColor,
     },
     home_text: {
       fontFamily: 'Lato',

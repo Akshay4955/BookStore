@@ -8,7 +8,7 @@ export const Color = {
   //   activeBackgorundColor: '#5A667D',
   //   activeTintColor: '#A0B0D0',
   //   inActiveTintColor: '#D6DCE6',
-  //   mediumColor: '#27292E',
+  placeholder: '#BABABA',
   lightColor: '#9D9D9D',
   borderColor: '#E2E2E2',
   description_text: '#888888',
@@ -19,7 +19,7 @@ export const Color = {
 
 export const borderWidth = {
   verySmall: 0.5,
-  //   small: 0.9,
+  small: 0.9,
   //   medium: 2,
   //   large: 10,
   //   extralarge: 50,
@@ -44,7 +44,7 @@ export const width = {
   large: scaleWidth(143),
   BookCard: scaleWidth(158),
   //   large: scaleWidth(240),
-  //   label: scaleWidth(300),
+  search: scaleWidth(320),
   extralarge: scaleWidth(360),
   full: scaleWidth(410),
 };
@@ -53,7 +53,7 @@ export const height = {
   //   modalButton: scaleHeight(35),
   small: scaleHeight(40),
   //   profilePic: scaleHeight(70),
-  //   medium: scaleHeight(60),
+  medium: scaleHeight(50),
   large: scaleHeight(90),
   imageHeight: scaleHeight(125),
   imageContainerHeight: scaleHeight(150),
