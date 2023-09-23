@@ -58,8 +58,15 @@ const GlobalStylesheet = () => {
       marginLeft: Constant.margin.large,
       color: Constant.Color.black,
     },
+    search_result_text: {
+      fontFamily: 'Calisto MT',
+      fontSize: Constant.fontSize.search,
+      marginLeft: Constant.margin.medium,
+      color: Constant.Color.lightColor,
+    },
     home_text_box: {
       flexDirection: 'row',
+      margin: Constant.margin.small,
     },
     items_no: {
       fontFamily: 'Lato',

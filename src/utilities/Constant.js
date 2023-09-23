@@ -73,6 +73,7 @@ export const fontSize = {
   verySmall: scaleSize(12),
   price: scaleSize(14),
   small: scaleSize(16),
+  search: scaleSize(18),
   medium: scaleSize(20),
   //   large: scaleSize(24),
   //   extralarge: scaleSize(40),
