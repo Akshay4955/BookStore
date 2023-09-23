@@ -53,6 +53,18 @@ const GlobalStylesheet = () => {
       marginLeft: Constant.margin.large,
       color: Constant.Color.lightColor,
     },
+    total_text: {
+      fontFamily: 'Lato',
+      fontSize: Constant.fontSize.small,
+      marginLeft: Constant.margin.large,
+      color: Constant.Color.black,
+    },
+    customer_text: {
+      fontFamily: 'Lato',
+      fontSize: Constant.fontSize.small,
+      marginLeft: Constant.margin.large,
+      color: Constant.Color.black,
+    },
     home_text: {
       fontFamily: 'Lato',
       fontSize: Constant.fontSize.medium,
@@ -70,6 +82,11 @@ const GlobalStylesheet = () => {
       flexDirection: 'row',
       margin: Constant.margin.small,
     },
+    customer_details_box: {
+      flexDirection: 'row',
+      margin: Constant.margin.small,
+      justifyContent: 'space-between',
+    },
     items_no: {
       fontFamily: 'Lato',
       fontWeight: '500',
@@ -84,6 +101,35 @@ const GlobalStylesheet = () => {
     backIcon: {
       marginTop: Constant.margin.large,
       marginLeft: Constant.margin.large,
+    },
+    addedToBag_button: {
+      height: Constant.height.small,
+      width: Constant.width.large,
+      marginHorizontal: Constant.margin.small,
+      backgroundColor: Constant.Color.addedToBagColor,
+      justifyContent: 'center',
+      alignItems: 'center',
+      borderRadius: Constant.borderRadius.small,
+      borderWidth: Constant.borderWidth.verySmall,
+      borderColor: Constant.Color.data_color,
+    },
+    addedToBag_text: {
+      color: Constant.Color.data_color,
+      fontFamily: 'Lato',
+      fontSize: Constant.fontSize.author,
+    },
+    placeOrder_button: {
+      height: Constant.height.small,
+      width: Constant.width.large,
+      marginHorizontal: Constant.margin.small,
+      backgroundColor: Constant.Color.data_color,
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    placeOrder_text: {
+      color: Constant.Color.backgroundColor,
+      fontFamily: 'Lato',
+      fontSize: Constant.fontSize.price,
     },
   });
 };

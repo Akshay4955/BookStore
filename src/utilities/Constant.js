@@ -59,7 +59,7 @@ export const height = {
   imageContainerHeight: scaleHeight(150),
   BookCard: scaleHeight(270),
   modalHeight: scaleHeight(450),
-  //   extralarge: scaleHeight(800),
+  customerModal: scaleHeight(550),
 };
 
 export const borderRadius = {
