@@ -35,6 +35,7 @@ const GlobalStylesheet = () => {
     },
     header_icon: {
       marginLeft: Constant.margin.large,
+      marginTop: Constant.margin.verySmall,
       color: Constant.Color.data_color,
     },
     text_input: {
@@ -55,12 +56,13 @@ const GlobalStylesheet = () => {
     home_text: {
       fontFamily: 'Lato',
       fontSize: Constant.fontSize.medium,
-      marginLeft: Constant.margin.large,
+      marginLeft: Constant.margin.medium,
       color: Constant.Color.black,
     },
     search_result_text: {
       fontFamily: 'Calisto MT',
       fontSize: Constant.fontSize.search,
+      marginTop: Constant.margin.verySmall,
       marginLeft: Constant.margin.medium,
       color: Constant.Color.lightColor,
     },

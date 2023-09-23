@@ -4,8 +4,9 @@ import Home from './screens/Home';
 import WishList from './screens/WishList';
 import Search from './screens/Search';
 import SearchResult from './screens/SearchResult';
+import MyBag from './screens/MyBag';
 
 const App = () => {
-  return <SearchResult />;
+  return <MyBag />;
 };
 export default App;

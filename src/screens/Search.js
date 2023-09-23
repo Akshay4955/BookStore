@@ -2,7 +2,7 @@ import {View, Text, TextInput, TouchableOpacity} from 'react-native';
 import React, {useState} from 'react';
 import GlobalStylesheet from '../utilities/GlobalStyleSheet';
 import BackSVG from '../assets/images/Back.svg';
-import SearchSVG from '../assets/images/Search.svg';
+import SearchSVG from '../assets/images/Type search.svg';
 import * as Constant from '../utilities/Constant';
 
 const Search = () => {
