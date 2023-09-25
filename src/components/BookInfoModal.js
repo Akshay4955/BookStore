@@ -28,23 +28,14 @@ const BookInfoModal = ({modalVisible, handleBackPress, item}) => {
         <View style={styles.modal}>
           <View style={styles.header}>
             <Image
-              source={require('../assets/images/book.png')}
+              source={{uri: item.value.imageUrl}}
               style={styles.image}></Image>
             <View style={styles.name_container}>
-              <Text style={styles.book_name}>Book Name</Text>
-              <Text style={styles.author_name}>by author name</Text>
+              <Text style={styles.book_name}>{item.value.title}</Text>
+              <Text style={styles.author_name}>by {item.value.author}</Text>
             </View>
           </View>
-          <Text style={styles.description}>
-            Typesetting of the body text is the work of the printer and their
-            typesetter. Typesetting of the other parts, the front matter, and
-            pages of the body matter involving specific design of their layout
-            are, if budget permits, the remit of the book designer. Typesetting
-            of the body text is generally considered to be rote work: skilled,
-            but not inherently creative. Computer typesetting was thus first
-            applied to body text. This represented the bulk of the work, yet
-            also that part requiring the least human creative input.
-          </Text>
+          <Text style={styles.description}>{item.value.description}</Text>
         </View>
       </View>
     </Modal>

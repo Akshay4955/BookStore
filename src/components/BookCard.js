@@ -1,49 +1,65 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  Button,
-  TouchableOpacity,
-} from 'react-native';
-import React, {useState} from 'react';
+import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
+import React, {useContext, useState} from 'react';
 import * as Constant from '../utilities/Constant';
 import AddWishlist from '../assets/images/Add to whishlist.svg';
 import AddedWishlist from '../assets/images/Added to wishlist.svg';
 import BookInfoModal from '../components/BookInfoModal';
+import {ListContext} from '../navigation/ListProvider';
 
 const BookCard = value => {
-  const [showModal, setShowModal] = useState(false);
+  const {items, setItems} = useContext(ListContext);
   const [addToBag, setAddToBag] = useState(false);
   const [addtoWishList, setAddToWishList] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+
   const handleItemPress = () => {
     setShowModal(true);
   };
   const handleBackPress = () => {
     setShowModal(false);
   };
+
+  const handleAddWishListPress = () => {
+    setAddToWishList(!addtoWishList);
+    const receivedBookData = items;
+    const findBook = receivedBookData.find(
+      book => book.title === value.value.title,
+    );
+    if (findBook) findBook.addToWishlist = !addtoWishList;
+    setItems(receivedBookData);
+  };
+
+  const handleAddToBagPress = () => {
+    setAddToBag(!addToBag);
+    const receivedBookData = items;
+    const findBook = receivedBookData.find(
+      book => book.title === value.value.title,
+    );
+    if (findBook) findBook.addToBag = !addToBag;
+    setItems(receivedBookData);
+  };
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={handleItemPress}>
         <View style={styles.image_container}>
           <Image
-            source={require('../assets/images/book.png')}
+            source={{uri: value.value.imageUrl}}
             style={styles.image}></Image>
         </View>
-        <Text style={styles.book_name}>{value.value.bookName}</Text>
+        <Text style={styles.book_name}>{value.value.title}</Text>
         <Text style={styles.author_name}>by {value.value.author}</Text>
         <Text style={styles.price}>Rs {value.value.price}</Text>
       </TouchableOpacity>
       {addToBag ? (
         <TouchableOpacity
           style={styles.addedToBag_button}
-          onPress={() => setAddToBag(!addToBag)}>
+          onPress={handleAddToBagPress}>
           <Text style={styles.addedToBag_text}>ADDED TO BAG</Text>
         </TouchableOpacity>
       ) : (
         <View style={styles.button_container}>
           {addtoWishList ? (
-            <TouchableOpacity onPress={() => setAddToWishList(!addtoWishList)}>
+            <TouchableOpacity onPress={handleAddWishListPress}>
               <AddedWishlist
                 width={27}
                 height={27}
@@ -51,14 +67,12 @@ const BookCard = value => {
               />
             </TouchableOpacity>
           ) : (
-            <TouchableOpacity onPress={() => setAddToWishList(!addtoWishList)}>
+            <TouchableOpacity onPress={handleAddWishListPress}>
               <AddWishlist width={27} height={27} style={styles.header_icon} />
             </TouchableOpacity>
           )}
 
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => setAddToBag(!addToBag)}>
+          <TouchableOpacity style={styles.button} onPress={handleAddToBagPress}>
             <Text style={styles.button_text}>ADD TO BAG</Text>
           </TouchableOpacity>
         </View>
@@ -66,7 +80,7 @@ const BookCard = value => {
       <BookInfoModal
         modalVisible={showModal}
         handleBackPress={handleBackPress}
-        item={value.value.price}
+        item={value}
       />
     </View>
   );
@@ -99,7 +113,7 @@ const styles = StyleSheet.create({
   },
   author_name: {
     fontFamily: 'Lato',
-    fontSize: Constant.fontSize.author,
+    fontSize: Constant.fontSize.verySmall,
     color: Constant.Color.lightColor,
     textAlign: 'left',
     marginLeft: Constant.margin.small,

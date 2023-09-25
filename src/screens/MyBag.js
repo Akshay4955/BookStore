@@ -11,7 +11,7 @@ import AddSVG from '../assets/images/Add.svg';
 import BagBookCard from '../components/BagBookCard';
 import CustomerDetailsModal from '../components/CustomerDetailsModal';
 
-const MyBag = () => {
+const MyBag = ({navigation}) => {
   const styles = GlobalStylesheet();
   const items = [
     {
@@ -46,11 +46,17 @@ const MyBag = () => {
     },
   ];
   const [showModal, setShowModal] = useState(false);
-  const handleBackPress = () => {
+  const handleModalBackPress = () => {
     setShowModal(false);
   };
   const handleCustomerPress = () => {
     setShowModal(true);
+  };
+  const handleBackPress = () => {
+    navigation.goBack();
+  };
+  const handlePlacerOrder = () => {
+    navigation.navigate('Order');
   };
   return (
     <View style={styles.screen_container}>
@@ -69,7 +75,7 @@ const MyBag = () => {
           <CartSVG width={27} height={27} style={styles.header_icon} />
         </View>
         <View style={styles.home_text_box}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={handleBackPress}>
             <BackSVG width={27} height={27} style={styles.header_icon} />
           </TouchableOpacity>
           <Text style={styles.home_text}>My Bag</Text>
@@ -93,13 +99,15 @@ const MyBag = () => {
             <Text style={styles.total_text}>Total</Text>
             <Text style={styles.customer_text}>Rs 1500</Text>
           </View>
-          <TouchableOpacity style={styles.placeOrder_button}>
+          <TouchableOpacity
+            style={styles.placeOrder_button}
+            onPress={handlePlacerOrder}>
             <Text style={styles.placeOrder_text}>PLACE ORDER</Text>
           </TouchableOpacity>
         </View>
         <CustomerDetailsModal
           modalVisible={showModal}
-          handleBackPress={handleBackPress}
+          handleBackPress={handleModalBackPress}
         />
       </View>
     </View>

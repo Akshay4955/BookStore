@@ -33,8 +33,19 @@ const GlobalStylesheet = () => {
       borderRadius: Constant.borderRadius.small,
       margin: Constant.margin.large,
     },
+    info_container: {
+      backgroundColor: Constant.Color.image_Backgorund,
+      height: Constant.height.infoHeight,
+      width: Constant.width.full,
+      marginVertical: Constant.margin.small,
+    },
     header_icon: {
       marginLeft: Constant.margin.large,
+      marginTop: Constant.margin.verySmall,
+      color: Constant.Color.data_color,
+    },
+    info_icon: {
+      marginLeft: Constant.margin.medium,
       marginTop: Constant.margin.verySmall,
       color: Constant.Color.data_color,
     },
@@ -59,6 +70,13 @@ const GlobalStylesheet = () => {
       marginLeft: Constant.margin.large,
       color: Constant.Color.black,
     },
+    order_text: {
+      fontFamily: 'Lato',
+      fontSize: Constant.fontSize.small,
+      margin: Constant.margin.large,
+      color: Constant.Color.black,
+      marginHorizontal: Constant.margin.modalMargin,
+    },
     customer_text: {
       fontFamily: 'Lato',
       fontSize: Constant.fontSize.small,
@@ -77,6 +95,18 @@ const GlobalStylesheet = () => {
       marginTop: Constant.margin.verySmall,
       marginLeft: Constant.margin.medium,
       color: Constant.Color.lightColor,
+    },
+    info_text: {
+      fontFamily: 'Lato',
+      fontSize: Constant.fontSize.price,
+      color: Constant.Color.black,
+      marginLeft: Constant.margin.medium,
+    },
+    address_text: {
+      fontFamily: 'Lato',
+      fontSize: Constant.fontSize.price,
+      color: Constant.Color.black,
+      marginHorizontal: Constant.margin.medium,
     },
     home_text_box: {
       flexDirection: 'row',
@@ -126,10 +156,23 @@ const GlobalStylesheet = () => {
       justifyContent: 'center',
       alignItems: 'center',
     },
+    continue_button: {
+      height: Constant.height.small,
+      width: Constant.width.search,
+      marginHorizontal: Constant.margin.small,
+      backgroundColor: Constant.Color.data_color,
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
     placeOrder_text: {
       color: Constant.Color.backgroundColor,
       fontFamily: 'Lato',
       fontSize: Constant.fontSize.price,
+    },
+    order_container: {
+      justifyContent: 'center',
+      alignItems: 'center',
+      marginTop: Constant.margin.extralarge,
     },
   });
 };

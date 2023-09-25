@@ -9,8 +9,11 @@ import AddedWishlist from '../assets/images/Added to wishlist.svg';
 import CartSVG from '../assets/images/My Bag.svg';
 import BookCard from '../components/BookCard';
 
-const WishList = () => {
+const WishList = ({navigation}) => {
   const styles = GlobalStylesheet();
+  const handleBackPress = () => {
+    navigation.goBack();
+  };
   const items = [
     {
       image: '',
@@ -57,7 +60,7 @@ const WishList = () => {
         <CartSVG width={27} height={27} style={styles.header_icon} />
       </View>
       <View style={styles.wishlist_header}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={handleBackPress}>
           <BackSVG width={27} height={27} style={styles.header_icon} />
         </TouchableOpacity>
         <Text style={styles.home_text}>WishList</Text>
