@@ -11,8 +11,12 @@ import AddressSVG from '../assets/images/Address.svg';
 import GlobalStylesheet from '../utilities/GlobalStyleSheet';
 import * as Constant from '../utilities/Constant';
 
-const Order = () => {
+const Order = ({navigation}) => {
   const styles = GlobalStylesheet();
+  const handleContinueShopping = () => {
+    navigation.navigate('Home');
+  };
+  const orderNumber = Math.floor(Math.random() * 1000000 + 1);
   return (
     <View style={styles.screen_container}>
       <View style={styles.home_header}>
@@ -29,10 +33,12 @@ const Order = () => {
         <OrderSVG width={250} height={250} />
         <Text style={styles.home_text}>Order Placed Successfully</Text>
         <Text style={styles.order_text}>
-          hurray!!! your order is confirmed the order id is #123456 save the
-          order id for further communication..
+          hurray!!! your order is confirmed the order id is #{orderNumber} save
+          the order id for further communication..
         </Text>
-        <TouchableOpacity style={styles.continue_button}>
+        <TouchableOpacity
+          style={styles.continue_button}
+          onPress={handleContinueShopping}>
           <Text style={styles.placeOrder_text}>CONTINUE SHOPPING</Text>
         </TouchableOpacity>
       </View>

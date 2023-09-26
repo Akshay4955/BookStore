@@ -43,7 +43,6 @@ export const width = {
   medium: scaleWidth(110),
   large: scaleWidth(143),
   BookCard: scaleWidth(158),
-  //   large: scaleWidth(240),
   search: scaleWidth(320),
   extralarge: scaleWidth(360),
   full: scaleWidth(410),

@@ -11,7 +11,11 @@ import React, {useState} from 'react';
 import * as Constant from '../utilities/Constant';
 import CloseSVG from '../assets/images/Close.svg';
 
-const CustomerDetailsModal = ({modalVisible, handleBackPress}) => {
+const CustomerDetailsModal = ({
+  modalVisible,
+  handleBackPress,
+  updateCustomerDetails,
+}) => {
   const [name, setName] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [pinCode, setPinCode] = useState('');
@@ -19,6 +23,19 @@ const CustomerDetailsModal = ({modalVisible, handleBackPress}) => {
   const [address, setAddress] = useState('');
   const [city, setCity] = useState('');
   const [landmark, setLandmark] = useState('');
+
+  const handleSave = () => {
+    updateCustomerDetails({
+      name,
+      phoneNumber,
+      pinCode,
+      locality,
+      address,
+      city,
+      landmark,
+    });
+    handleBackPress();
+  };
   return (
     <Modal
       animationType="slide"
@@ -41,6 +58,7 @@ const CustomerDetailsModal = ({modalVisible, handleBackPress}) => {
               placeholder="Name"
               placeholderTextColor={Constant.Color.placeholder}
               onChangeText={setName}
+              style={styles.text_input}
             />
           </View>
           <View style={styles.search_input_container}>
@@ -49,6 +67,7 @@ const CustomerDetailsModal = ({modalVisible, handleBackPress}) => {
               placeholder="Phone Number"
               placeholderTextColor={Constant.Color.placeholder}
               onChangeText={setPhoneNumber}
+              style={styles.text_input}
             />
           </View>
 
@@ -58,6 +77,7 @@ const CustomerDetailsModal = ({modalVisible, handleBackPress}) => {
               placeholder="Pin Code"
               placeholderTextColor={Constant.Color.placeholder}
               onChangeText={setPinCode}
+              style={styles.text_input}
             />
           </View>
 
@@ -67,6 +87,7 @@ const CustomerDetailsModal = ({modalVisible, handleBackPress}) => {
               placeholder="Locality"
               placeholderTextColor={Constant.Color.placeholder}
               onChangeText={setLocality}
+              style={styles.text_input}
             />
           </View>
 
@@ -76,6 +97,7 @@ const CustomerDetailsModal = ({modalVisible, handleBackPress}) => {
               placeholder="Address"
               placeholderTextColor={Constant.Color.placeholder}
               onChangeText={setAddress}
+              style={styles.text_input}
             />
           </View>
 
@@ -85,6 +107,7 @@ const CustomerDetailsModal = ({modalVisible, handleBackPress}) => {
               placeholder="City"
               placeholderTextColor={Constant.Color.placeholder}
               onChangeText={setCity}
+              style={styles.text_input}
             />
           </View>
 
@@ -94,8 +117,12 @@ const CustomerDetailsModal = ({modalVisible, handleBackPress}) => {
               placeholder="Landmark"
               placeholderTextColor={Constant.Color.placeholder}
               onChangeText={setLandmark}
+              style={styles.text_input}
             />
           </View>
+          <TouchableOpacity onPress={handleSave} style={styles.save_button}>
+            <Text style={styles.saveButton_text}>Save</Text>
+          </TouchableOpacity>
         </View>
       </View>
     </Modal>
@@ -124,37 +151,29 @@ const styles = StyleSheet.create({
     borderRadius: Constant.borderRadius.small,
     margin: Constant.margin.small,
   },
-  header: {
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
-    margin: Constant.margin.large,
-  },
+
   book_name: {
     fontFamily: 'Lato',
     fontSize: Constant.fontSize.search,
     color: Constant.Color.black,
     margin: Constant.margin.medium,
   },
-  author_name: {
-    fontFamily: 'Lato',
-    fontSize: Constant.fontSize.verySmall,
-    color: Constant.Color.lightColor,
-    marginLeft: Constant.margin.medium,
+  text_input: {
+    color: Constant.Color.black,
   },
-  image: {
-    height: Constant.height.large,
-    width: Constant.width.small,
-    resizeMode: 'stretch',
+  save_button: {
+    height: Constant.height.small,
+    width: Constant.width.large,
+    marginHorizontal: Constant.margin.small,
+    backgroundColor: Constant.Color.data_color,
+    borderRadius: Constant.borderRadius.small,
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'flex-end',
   },
-  description: {
+  saveButton_text: {
+    color: Constant.Color.backgroundColor,
     fontFamily: 'Lato',
     fontSize: Constant.fontSize.price,
-    color: Constant.Color.description_text,
-    margin: Constant.margin.medium,
-  },
-  name_container: {
-    marginLeft: Constant.margin.medium,
-    marginTop: Constant.margin.large,
   },
 });

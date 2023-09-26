@@ -1,5 +1,5 @@
 import {View, Text, FlatList, TouchableOpacity} from 'react-native';
-import React from 'react';
+import React, {useContext} from 'react';
 import GlobalStylesheet from '../utilities/GlobalStyleSheet';
 import * as Constant from '../utilities/Constant';
 import LogoSVG from '../assets/images/Logo.svg';
@@ -8,41 +8,32 @@ import WishlistSVG from '../assets/images/Whishlist.svg';
 import CartSVG from '../assets/images/My Bag.svg';
 import BookCard from '../components/BookCard';
 import BackSVG from '../assets/images/Back.svg';
+import {useRoute} from '@react-navigation/native';
+import {ListContext} from '../navigation/ListProvider';
 
-const SearchResult = () => {
+const SearchResult = ({navigation}) => {
+  const {items} = useContext(ListContext);
+  const route = useRoute();
+  const text = route?.params.text;
   const styles = GlobalStylesheet();
-  const items = [
-    {
-      image: '',
-      bookName: "Don't Make Me Think",
-      author: 'Steve Kurg',
-      price: 1500,
-    },
-    {
-      image: '',
-      bookName: "Don't Make Me Think",
-      author: 'Steve Mark',
-      price: 1300,
-    },
-    {
-      image: '',
-      bookName: "Don't Make Me Angry",
-      author: 'Steve Hunk',
-      price: 1200,
-    },
-    {
-      image: '',
-      bookName: "Don't Make Me Angry",
-      author: 'Steve Hunk',
-      price: 1200,
-    },
-    {
-      image: '',
-      bookName: "Don't Make Me Angry",
-      author: 'Steve Hunk',
-      price: 1200,
-    },
-  ];
+
+  const data = items.filter(
+    book =>
+      book.title.includes(text) ||
+      book.author.includes(text) ||
+      book.description.includes(text),
+  );
+  const handleBackPress = () => {
+    navigation.goBack();
+  };
+
+  const handleWishListPress = () => {
+    navigation.navigate('WishList');
+  };
+
+  const handleCartPress = () => {
+    navigation.navigate('MyBag');
+  };
 
   return (
     <View style={styles.screen_container}>
@@ -53,17 +44,21 @@ const SearchResult = () => {
           height={27}
           style={[styles.header_icon, {marginLeft: Constant.margin.extralarge}]}
         />
-        <WishlistSVG width={27} height={27} style={styles.header_icon} />
-        <CartSVG width={27} height={27} style={styles.header_icon} />
+        <TouchableOpacity onPress={handleWishListPress}>
+          <WishlistSVG width={27} height={27} style={styles.header_icon} />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={handleCartPress}>
+          <CartSVG width={27} height={27} style={styles.header_icon} />
+        </TouchableOpacity>
       </View>
       <View style={styles.home_text_box}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={handleBackPress}>
           <BackSVG width={27} height={27} style={styles.header_icon} />
         </TouchableOpacity>
-        <Text style={styles.search_result_text}>Showing result for Design</Text>
+        <Text style={styles.search_result_text}>Showing result for {text}</Text>
       </View>
       <FlatList
-        data={items}
+        data={data}
         numColumns={2}
         renderItem={({item}) => <BookCard value={item} />}
       />

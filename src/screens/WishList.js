@@ -17,17 +17,31 @@ const WishList = ({navigation}) => {
   const handleBackPress = () => {
     navigation.goBack();
   };
+  const handleSearchPress = () => {
+    navigation.navigate('Search');
+  };
+
+  const handleCartPress = () => {
+    navigation.navigate('MyBag');
+  };
   return (
     <View style={styles.screen_container}>
       <View style={styles.home_header}>
         <LogoSVG width={120} height={120} style={styles.header_icon} />
-        <SearchSVG
-          width={27}
-          height={27}
-          style={[styles.header_icon, {marginLeft: Constant.margin.extralarge}]}
-        />
+        <TouchableOpacity onPress={handleSearchPress}>
+          <SearchSVG
+            width={27}
+            height={27}
+            style={[
+              styles.header_icon,
+              {marginLeft: Constant.margin.extralarge},
+            ]}
+          />
+        </TouchableOpacity>
         <AddedWishlist width={27} height={27} style={styles.header_icon} />
-        <CartSVG width={27} height={27} style={styles.header_icon} />
+        <TouchableOpacity onPress={handleCartPress}>
+          <CartSVG width={27} height={27} style={styles.header_icon} />
+        </TouchableOpacity>
       </View>
       <View style={styles.wishlist_header}>
         <TouchableOpacity onPress={handleBackPress}>

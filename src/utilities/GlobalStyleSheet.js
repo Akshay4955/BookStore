@@ -174,6 +174,11 @@ const GlobalStylesheet = () => {
       alignItems: 'center',
       marginTop: Constant.margin.extralarge,
     },
+    customer_box: {
+      height: Constant.height.imageHeight,
+      width: Constant.width.extralarge,
+      padding: Constant.padding.small,
+    },
   });
 };
 

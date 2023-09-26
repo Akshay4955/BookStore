@@ -4,14 +4,22 @@ import GlobalStylesheet from '../utilities/GlobalStyleSheet';
 import BackSVG from '../assets/images/Back.svg';
 import SearchSVG from '../assets/images/Type search.svg';
 import * as Constant from '../utilities/Constant';
-import {NavigationContainer} from '@react-navigation/native';
+import {FlatList} from 'react-native-gesture-handler';
 
 const Search = ({navigation}) => {
   const styles = GlobalStylesheet();
   const [text, onChangeText] = useState('');
+  let recentSearch = [];
   const handleSubmit = () => {
-    navigation.navigate('SearchResult');
+    if (recentSearch.length < 6) {
+      recentSearch.splice(recentSearch.length, 0, text);
+    } else {
+      recentSearch.splice(0, 1);
+      recentSearch.push(text);
+    }
+    navigation.navigate('SearchResult', {text: text});
   };
+  console.log('Array of recent search', recentSearch);
   const handleBackPress = () => {
     navigation.goBack();
   };
@@ -37,6 +45,10 @@ const Search = ({navigation}) => {
           onSubmitEditing={handleSubmit}></TextInput>
       </View>
       <Text style={styles.search_text}>Recently Searched</Text>
+      <FlatList
+        data={recentSearch}
+        renderItem={({item}) => <Text>{item}</Text>}
+      />
     </View>
   );
 };
