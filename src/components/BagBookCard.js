@@ -1,27 +1,46 @@
 import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
-import React, {useDebugValue, useEffect, useReducer} from 'react';
+import React, {useContext, useEffect, useReducer} from 'react';
 import * as Constant from '../utilities/Constant';
 import MinusSVG from '../assets/images/Group 4216.svg';
 import AddSVG from '../assets/images/Group 4217.svg';
 import CloseSVG from '../assets/images/Icon material-close.svg';
+import {ListContext} from '../navigation/ListProvider';
 
-const BagBookCard = ({value, total, setTotal}) => {
-  const initialState = 1;
+const BagBookCard = ({value, calculateTotalPrice}) => {
+  const {items, setItems} = useContext(ListContext);
+  const initialState = value.quantity;
   const reducer = (state, action) => {
     switch (action) {
       case 'increment':
         return state + 1;
       case 'decrement':
-        return state - 1;
+        return state === 0 ? 0 : state - 1;
       default:
         return state;
     }
   };
   const [state, dispatch] = useReducer(reducer, initialState);
-  useEffect(() => {
-    setTotal(value.price * state);
-  }, [state]);
 
+  const handleDecrementPress = () => {
+    dispatch('decrement');
+    const receivedBookData = items;
+    const findBook = receivedBookData.find(book => book.title === value.title);
+    if (findBook)
+      findBook.quantity = findBook.quantity === 0 ? 0 : findBook.quantity - 1;
+    setItems(receivedBookData);
+  };
+
+  const handleIncrementPress = () => {
+    dispatch('increment');
+    const receivedBookData = items;
+    const findBook = receivedBookData.find(book => book.title === value.title);
+    if (findBook) findBook.quantity = findBook.quantity + 1;
+    setItems(receivedBookData);
+  };
+
+  useEffect(() => {
+    calculateTotalPrice();
+  }, [state]);
   return (
     <View style={styles.container}>
       <Image source={{uri: value.imageUrl}} style={styles.image}></Image>
@@ -31,13 +50,13 @@ const BagBookCard = ({value, total, setTotal}) => {
         <Text style={styles.price}>Rs {value.price}</Text>
         <View style={styles.button_container}>
           <TouchableOpacity
-            onPress={() => dispatch('decrement')}
+            onPress={handleDecrementPress}
             style={styles.header_icon}>
             <MinusSVG width={25} height={25} />
           </TouchableOpacity>
           <Text style={styles.count}>{state}</Text>
           <TouchableOpacity
-            onPress={() => dispatch('increment')}
+            onPress={handleIncrementPress}
             style={styles.header_icon}>
             <AddSVG width={25} height={25} />
           </TouchableOpacity>

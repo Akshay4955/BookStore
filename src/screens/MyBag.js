@@ -32,7 +32,13 @@ const MyBag = ({navigation}) => {
   const handlePlacerOrder = () => {
     navigation.navigate('Order');
   };
-
+  const calculateTotalPrice = () => {
+    let totalPrice = 0;
+    data.forEach(item => {
+      totalPrice += item.price * item.quantity;
+    });
+    setTotal(totalPrice);
+  };
   return (
     <View style={styles.screen_container}>
       <View style={styles.screen_container}>
@@ -60,7 +66,10 @@ const MyBag = ({navigation}) => {
           data={data}
           numColumns={1}
           renderItem={({item}) => (
-            <BagBookCard value={item} total={total} setTotal={setTotal} />
+            <BagBookCard
+              value={item}
+              calculateTotalPrice={calculateTotalPrice}
+            />
           )}
         />
       </View>
