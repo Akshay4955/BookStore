@@ -8,8 +8,8 @@ import {ListContext} from '../navigation/ListProvider';
 
 const BookCard = value => {
   const {items, setItems} = useContext(ListContext);
-  const [addToBag, setAddToBag] = useState(false);
-  const [addtoWishList, setAddToWishList] = useState(false);
+  const [addToBag, setAddToBag] = useState(value.value.addToBag);
+  const [addtoWishList, setAddToWishList] = useState(value.value.addToWishlist);
   const [showModal, setShowModal] = useState(false);
 
   const handleItemPress = () => {

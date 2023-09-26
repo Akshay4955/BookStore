@@ -1,12 +1,12 @@
 import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
-import React, {useReducer} from 'react';
+import React, {useDebugValue, useEffect, useReducer} from 'react';
 import * as Constant from '../utilities/Constant';
 import MinusSVG from '../assets/images/Group 4216.svg';
 import AddSVG from '../assets/images/Group 4217.svg';
 import CloseSVG from '../assets/images/Icon material-close.svg';
 
-const BagBookCard = value => {
-  initialState = 1;
+const BagBookCard = ({value, total, setTotal}) => {
+  const initialState = 1;
   const reducer = (state, action) => {
     switch (action) {
       case 'increment':
@@ -18,29 +18,36 @@ const BagBookCard = value => {
     }
   };
   const [state, dispatch] = useReducer(reducer, initialState);
+  useEffect(() => {
+    setTotal(value.price * state);
+  }, [state]);
 
   return (
     <View style={styles.container}>
-      <Image
-        source={require('../assets/images/book.png')}
-        style={styles.image}></Image>
+      <Image source={{uri: value.imageUrl}} style={styles.image}></Image>
       <View style={{marginLeft: Constant.margin.large}}>
-        <Text style={styles.book_name}>{value.value.bookName}</Text>
-        <Text style={styles.author_name}>by {value.value.author}</Text>
-        <Text style={styles.price}>Rs {value.value.price}</Text>
+        <Text style={styles.book_name}>{value.title}</Text>
+        <Text style={styles.author_name}>by {value.author}</Text>
+        <Text style={styles.price}>Rs {value.price}</Text>
         <View style={styles.button_container}>
-          <TouchableOpacity onPress={() => dispatch('decrement')}>
+          <TouchableOpacity
+            onPress={() => dispatch('decrement')}
+            style={styles.header_icon}>
             <MinusSVG width={25} height={25} />
           </TouchableOpacity>
           <Text style={styles.count}>{state}</Text>
-          <TouchableOpacity onPress={() => dispatch('increment')}>
+          <TouchableOpacity
+            onPress={() => dispatch('increment')}
+            style={styles.header_icon}>
             <AddSVG width={25} height={25} />
           </TouchableOpacity>
         </View>
       </View>
-      <TouchableOpacity>
-        <CloseSVG width={20} height={20} style={styles.header_icon} />
-      </TouchableOpacity>
+      <View style={{flex: 1, flexDirection: 'row-reverse'}}>
+        <TouchableOpacity>
+          <CloseSVG width={20} height={20} style={styles.header_icon} />
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -82,17 +89,15 @@ const styles = StyleSheet.create({
   button_container: {
     flexDirection: 'row',
     marginTop: Constant.margin.large,
-    justifyContent: 'space-around',
-    alignItems: 'center',
   },
   header_icon: {
-    margin: Constant.margin.small,
     marginLeft: Constant.margin.large,
   },
   count: {
     fontFamily: 'Lato',
     fontSize: Constant.fontSize.price,
     color: Constant.Color.black,
+    marginLeft: Constant.margin.large,
   },
 
   image_container: {

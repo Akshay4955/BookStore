@@ -1,5 +1,5 @@
 import {View, Text, FlatList, TouchableOpacity} from 'react-native';
-import React, {useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import GlobalStylesheet from '../utilities/GlobalStyleSheet';
 import * as Constant from '../utilities/Constant';
 import LogoSVG from '../assets/images/Logo.svg';
@@ -10,41 +10,15 @@ import BackSVG from '../assets/images/Back.svg';
 import AddSVG from '../assets/images/Add.svg';
 import BagBookCard from '../components/BagBookCard';
 import CustomerDetailsModal from '../components/CustomerDetailsModal';
+import {ListContext} from '../navigation/ListProvider';
 
 const MyBag = ({navigation}) => {
   const styles = GlobalStylesheet();
-  const items = [
-    {
-      image: '',
-      bookName: "Don't Make Me Think",
-      author: 'Steve Kurg',
-      price: 1500,
-    },
-    {
-      image: '',
-      bookName: "Don't Make Me Think",
-      author: 'Steve Mark',
-      price: 1300,
-    },
-    {
-      image: '',
-      bookName: "Don't Make Me Angry",
-      author: 'Steve Hunk',
-      price: 1200,
-    },
-    {
-      image: '',
-      bookName: "Don't Make Me Angry",
-      author: 'Steve Hunk',
-      price: 1200,
-    },
-    {
-      image: '',
-      bookName: "Don't Make Me Angry",
-      author: 'Steve Hunk',
-      price: 1200,
-    },
-  ];
+  const [total, setTotal] = useState(0);
+  const {items} = useContext(ListContext);
+
+  const data = items.filter(book => book.addToBag === true);
+
   const [showModal, setShowModal] = useState(false);
   const handleModalBackPress = () => {
     setShowModal(false);
@@ -58,6 +32,7 @@ const MyBag = ({navigation}) => {
   const handlePlacerOrder = () => {
     navigation.navigate('Order');
   };
+
   return (
     <View style={styles.screen_container}>
       <View style={styles.screen_container}>
@@ -79,12 +54,14 @@ const MyBag = ({navigation}) => {
             <BackSVG width={27} height={27} style={styles.header_icon} />
           </TouchableOpacity>
           <Text style={styles.home_text}>My Bag</Text>
-          <Text style={styles.items_no}>(12 items)</Text>
+          <Text style={styles.items_no}>{data.length} items</Text>
         </View>
         <FlatList
-          data={items}
+          data={data}
           numColumns={1}
-          renderItem={({item}) => <BagBookCard value={item} />}
+          renderItem={({item}) => (
+            <BagBookCard value={item} total={total} setTotal={setTotal} />
+          )}
         />
       </View>
       <View>
@@ -97,7 +74,7 @@ const MyBag = ({navigation}) => {
         <View style={styles.customer_details_box}>
           <View>
             <Text style={styles.total_text}>Total</Text>
-            <Text style={styles.customer_text}>Rs 1500</Text>
+            <Text style={styles.customer_text}>Rs {total}</Text>
           </View>
           <TouchableOpacity
             style={styles.placeOrder_button}

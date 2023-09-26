@@ -14,6 +14,7 @@ const ListProvider = ({children}) => {
           const Book = result.data[value];
           Book.addToBag = false;
           Book.addToWishlist = false;
+          Book.quantity = 1;
           data.push(Book);
         });
         setItems(data);
