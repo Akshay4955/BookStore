@@ -31,11 +31,17 @@ const BookCard = value => {
 
   const handleAddToBagPress = () => {
     setAddToBag(!addToBag);
+    value.updateBagCount(!addToBag ? 1 : -1);
     const receivedBookData = items;
     const findBook = receivedBookData.find(
       book => book.title === value.value.title,
     );
-    if (findBook) findBook.addToBag = !addToBag;
+    if (findBook) {
+      findBook.addToBag = !addToBag;
+      findBook.quantity = !addToBag
+        ? findBook.quantity + 1
+        : findBook.quantity - 1;
+    }
     setItems(receivedBookData);
   };
   return (

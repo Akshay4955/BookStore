@@ -1,28 +1,31 @@
 import {View, Text, TextInput, TouchableOpacity} from 'react-native';
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import GlobalStylesheet from '../utilities/GlobalStyleSheet';
 import BackSVG from '../assets/images/Back.svg';
 import SearchSVG from '../assets/images/Type search.svg';
 import * as Constant from '../utilities/Constant';
 import {FlatList} from 'react-native-gesture-handler';
+import {ListContext} from '../navigation/ListProvider';
 
 const Search = ({navigation}) => {
   const styles = GlobalStylesheet();
+  const {recentSearch, setRecentSearch} = useContext(ListContext);
   const [text, onChangeText] = useState('');
-  let recentSearch = [];
   const handleSubmit = () => {
-    if (recentSearch.length < 6) {
-      recentSearch.splice(recentSearch.length, 0, text);
+    const data = recentSearch;
+    if (data.length < 6) {
+      data.splice(data.length, 0, text);
     } else {
-      recentSearch.splice(0, 1);
-      recentSearch.push(text);
+      data.splice(0, 1);
+      data.push(text);
     }
+    setRecentSearch(data);
     navigation.navigate('SearchResult', {text: text});
   };
-  console.log('Array of recent search', recentSearch);
   const handleBackPress = () => {
     navigation.goBack();
   };
+
   return (
     <View style={styles.screen_container}>
       <View style={styles.home_header}>
@@ -47,7 +50,9 @@ const Search = ({navigation}) => {
       <Text style={styles.search_text}>Recently Searched</Text>
       <FlatList
         data={recentSearch}
-        renderItem={({item}) => <Text>{item}</Text>}
+        renderItem={({item}) => (
+          <Text style={styles.recent_search_text}>{item}</Text>
+        )}
       />
     </View>
   );

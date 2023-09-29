@@ -179,6 +179,28 @@ const GlobalStylesheet = () => {
       width: Constant.width.extralarge,
       padding: Constant.padding.small,
     },
+    badge: {
+      position: 'absolute',
+      top: 0,
+      left: 20,
+      height: 16,
+      width: 16,
+      backgroundColor: 'red',
+      borderRadius: 12,
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    badgeText: {
+      color: 'white',
+      fontSize: 12,
+    },
+    recent_search_text: {
+      fontFamily: 'Lato',
+      fontSize: Constant.fontSize.small,
+      marginLeft: Constant.margin.large,
+      color: Constant.Color.black,
+      marginTop: Constant.margin.large,
+    },
   });
 };
 

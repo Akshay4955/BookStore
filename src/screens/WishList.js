@@ -13,6 +13,8 @@ import {ListContext} from '../navigation/ListProvider';
 const WishList = ({navigation}) => {
   const styles = GlobalStylesheet();
   const {items} = useContext(ListContext);
+  const [bagCount, setBagCount] = useState(0);
+  const [count, setCount] = useState(0);
   const data = items.filter(book => book.addToWishlist === true);
   const handleBackPress = () => {
     navigation.goBack();
@@ -24,6 +26,16 @@ const WishList = ({navigation}) => {
   const handleCartPress = () => {
     navigation.navigate('MyBag');
   };
+
+  const updateBagCount = value => {
+    setCount(prevCount => prevCount + value);
+  };
+
+  useEffect(() => {
+    const receivedBookData = items;
+    total = receivedBookData.reduce((sum, book) => sum + book.quantity, 0);
+    setBagCount(total);
+  }, [count]);
   return (
     <View style={styles.screen_container}>
       <View style={styles.home_header}>
@@ -40,7 +52,12 @@ const WishList = ({navigation}) => {
         </TouchableOpacity>
         <AddedWishlist width={27} height={27} style={styles.header_icon} />
         <TouchableOpacity onPress={handleCartPress}>
-          <CartSVG width={27} height={27} style={styles.header_icon} />
+          <View style={{position: 'relative'}}>
+            <CartSVG width={27} height={27} style={styles.header_icon} />
+            <View style={styles.badge}>
+              <Text style={styles.badgeText}>{bagCount}</Text>
+            </View>
+          </View>
         </TouchableOpacity>
       </View>
       <View style={styles.wishlist_header}>
@@ -53,7 +70,9 @@ const WishList = ({navigation}) => {
       <FlatList
         data={data}
         numColumns={2}
-        renderItem={({item}) => <BookCard value={item} />}
+        renderItem={({item}) => (
+          <BookCard value={item} updateBagCount={updateBagCount} />
+        )}
       />
     </View>
   );

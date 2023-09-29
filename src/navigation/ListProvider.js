@@ -4,6 +4,7 @@ export const ListContext = createContext('');
 
 const ListProvider = ({children}) => {
   const [items, setItems] = useState([]);
+  const [recentSearch, setRecentSearch] = useState([]);
 
   const getItems = () => {
     const data = [];
@@ -14,7 +15,7 @@ const ListProvider = ({children}) => {
           const Book = result.data[value];
           Book.addToBag = false;
           Book.addToWishlist = false;
-          Book.quantity = 1;
+          Book.quantity = 0;
           data.push(Book);
         });
         setItems(data);
@@ -26,12 +27,13 @@ const ListProvider = ({children}) => {
     getItems();
   }, []);
 
-  console.log('Data: ', items);
   return (
     <ListContext.Provider
       value={{
         items,
         setItems,
+        recentSearch,
+        setRecentSearch,
       }}>
       {children}
     </ListContext.Provider>

@@ -1,5 +1,5 @@
 import {View, Text, FlatList, TouchableOpacity} from 'react-native';
-import React, {useContext, useEffect} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import GlobalStylesheet from '../utilities/GlobalStyleSheet';
 import * as Constant from '../utilities/Constant';
 import LogoSVG from '../assets/images/Logo.svg';
@@ -11,6 +11,8 @@ import {ListContext} from '../navigation/ListProvider';
 
 const Home = ({navigation}) => {
   const {items} = useContext(ListContext);
+  const [count, setCount] = useState(0);
+  const [bagCount, setBagCount] = useState(0);
   const styles = GlobalStylesheet();
 
   const handleSearchPress = () => {
@@ -24,6 +26,16 @@ const Home = ({navigation}) => {
   const handleCartPress = () => {
     navigation.navigate('MyBag');
   };
+
+  const updateBagCount = value => {
+    setCount(prevCount => prevCount + value);
+  };
+
+  useEffect(() => {
+    const receivedBookData = items;
+    total = receivedBookData.reduce((sum, book) => sum + book.quantity, 0);
+    setBagCount(total);
+  }, [count]);
   return (
     <View style={styles.screen_container}>
       <View style={styles.home_header}>
@@ -42,7 +54,12 @@ const Home = ({navigation}) => {
           <WishlistSVG width={27} height={27} style={styles.header_icon} />
         </TouchableOpacity>
         <TouchableOpacity onPress={handleCartPress}>
-          <CartSVG width={27} height={27} style={styles.header_icon} />
+          <View style={{position: 'relative'}}>
+            <CartSVG width={27} height={27} style={styles.header_icon} />
+            <View style={styles.badge}>
+              <Text style={styles.badgeText}>{bagCount}</Text>
+            </View>
+          </View>
         </TouchableOpacity>
       </View>
       <View style={styles.home_text_box}>
@@ -52,7 +69,9 @@ const Home = ({navigation}) => {
       <FlatList
         data={items}
         numColumns={2}
-        renderItem={({item}) => <BookCard value={item} />}
+        renderItem={({item}) => (
+          <BookCard value={item} updateBagCount={updateBagCount} />
+        )}
       />
     </View>
   );

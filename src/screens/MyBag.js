@@ -70,7 +70,6 @@ const MyBag = ({navigation}) => {
           <TouchableOpacity onPress={handleWishListPress}>
             <WishlistSVG width={27} height={27} style={styles.header_icon} />
           </TouchableOpacity>
-
           <CartSVG width={27} height={27} style={styles.header_icon} />
         </View>
         <View style={styles.home_text_box}>
