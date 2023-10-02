@@ -7,8 +7,8 @@ import CloseSVG from '../assets/images/Icon material-close.svg';
 import {ListContext} from '../navigation/ListProvider';
 
 const BagBookCard = ({value, calculateTotalPrice}) => {
-  const {items, setItems} = useContext(ListContext);
-  const initialState = value.quantity;
+  const {items, setItems, cartItems} = useContext(ListContext);
+  const initialState = cartItems.includes(value.title) ? 1 : 0;
   const reducer = (state, action) => {
     switch (action) {
       case 'increment':

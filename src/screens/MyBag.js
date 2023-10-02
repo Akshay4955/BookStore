@@ -1,24 +1,20 @@
 import {View, Text, FlatList, TouchableOpacity} from 'react-native';
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext, useState} from 'react';
 import GlobalStylesheet from '../utilities/GlobalStyleSheet';
-import * as Constant from '../utilities/Constant';
-import LogoSVG from '../assets/images/Logo.svg';
-import SearchSVG from '../assets/images/Search.svg';
-import WishlistSVG from '../assets/images/Whishlist.svg';
-import CartSVG from '../assets/images/My Bag.svg';
 import BackSVG from '../assets/images/Back.svg';
 import AddSVG from '../assets/images/Add.svg';
 import BagBookCard from '../components/BagBookCard';
 import CustomerDetailsModal from '../components/CustomerDetailsModal';
 import {ListContext} from '../navigation/ListProvider';
+import Header from '../components/Header';
 
 const MyBag = ({navigation}) => {
-  const {items} = useContext(ListContext);
+  const {items, cartItems} = useContext(ListContext);
   const styles = GlobalStylesheet();
   const [total, setTotal] = useState(0);
   const [customerDetails, setCustomerDetails] = useState();
 
-  const data = items.filter(book => book.addToBag === true);
+  const data = items.filter(book => cartItems.includes(book.title));
 
   const [showModal, setShowModal] = useState(false);
   const handleModalBackPress = () => {
@@ -45,33 +41,10 @@ const MyBag = ({navigation}) => {
     setCustomerDetails(details);
   };
 
-  const handleSearchPress = () => {
-    navigation.navigate('Search');
-  };
-
-  const handleWishListPress = () => {
-    navigation.navigate('WishList');
-  };
   return (
     <View style={styles.screen_container}>
       <View style={styles.screen_container}>
-        <View style={styles.home_header}>
-          <LogoSVG width={120} height={120} style={styles.header_icon} />
-          <TouchableOpacity onPress={handleSearchPress}>
-            <SearchSVG
-              width={27}
-              height={27}
-              style={[
-                styles.header_icon,
-                {marginLeft: Constant.margin.extralarge},
-              ]}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={handleWishListPress}>
-            <WishlistSVG width={27} height={27} style={styles.header_icon} />
-          </TouchableOpacity>
-          <CartSVG width={27} height={27} style={styles.header_icon} />
-        </View>
+        <Header navigation={navigation} />
         <View style={styles.home_text_box}>
           <TouchableOpacity onPress={handleBackPress}>
             <BackSVG width={27} height={27} style={styles.header_icon} />

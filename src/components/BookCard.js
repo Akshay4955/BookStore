@@ -7,9 +7,20 @@ import BookInfoModal from '../components/BookInfoModal';
 import {ListContext} from '../navigation/ListProvider';
 
 const BookCard = value => {
-  const {items, setItems} = useContext(ListContext);
-  const [addToBag, setAddToBag] = useState(value.value.addToBag);
-  const [addtoWishList, setAddToWishList] = useState(value.value.addToWishlist);
+  const {
+    addToCart,
+    removeFromCart,
+    cartItems,
+    wishlistItems,
+    addToWishlist,
+    removeFromWishlist,
+  } = useContext(ListContext);
+  const [addToBag, setAddToBag] = useState(
+    cartItems.includes(value.value.title),
+  );
+  const [addtoWishList, setAddToWishList] = useState(
+    wishlistItems.includes(value.value.title),
+  );
   const [showModal, setShowModal] = useState(false);
 
   const handleItemPress = () => {
@@ -21,29 +32,16 @@ const BookCard = value => {
 
   const handleAddWishListPress = () => {
     setAddToWishList(!addtoWishList);
-    const receivedBookData = items;
-    const findBook = receivedBookData.find(
-      book => book.title === value.value.title,
-    );
-    if (findBook) findBook.addToWishlist = !addtoWishList;
-    setItems(receivedBookData);
+    addtoWishList
+      ? removeFromWishlist(value.value.title)
+      : addToWishlist(value.value.title);
   };
 
   const handleAddToBagPress = () => {
     setAddToBag(!addToBag);
-    value.updateBagCount(!addToBag ? 1 : -1);
-    const receivedBookData = items;
-    const findBook = receivedBookData.find(
-      book => book.title === value.value.title,
-    );
-    if (findBook) {
-      findBook.addToBag = !addToBag;
-      findBook.quantity = !addToBag
-        ? findBook.quantity + 1
-        : findBook.quantity - 1;
-    }
-    setItems(receivedBookData);
+    addToBag ? removeFromCart(value.value.title) : addToCart(value.value.title);
   };
+
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={handleItemPress}>
