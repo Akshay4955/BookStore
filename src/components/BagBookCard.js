@@ -7,7 +7,7 @@ import CloseSVG from '../assets/images/Icon material-close.svg';
 import {ListContext} from '../navigation/ListProvider';
 
 const BagBookCard = ({value, calculateTotalPrice}) => {
-  const {items, setItems, cartItems} = useContext(ListContext);
+  const {items, setItems, cartItems, removeFromCart} = useContext(ListContext);
   const initialState = cartItems.includes(value.title) ? 1 : 0;
   const reducer = (state, action) => {
     switch (action) {
@@ -38,9 +38,13 @@ const BagBookCard = ({value, calculateTotalPrice}) => {
     setItems(receivedBookData);
   };
 
+  const handleClosePress = () => {
+    removeFromCart(value.title);
+  };
+
   useEffect(() => {
     calculateTotalPrice();
-  }, [state]);
+  }, [state, cartItems]);
   return (
     <View style={styles.container}>
       <Image source={{uri: value.imageUrl}} style={styles.image}></Image>
@@ -63,7 +67,7 @@ const BagBookCard = ({value, calculateTotalPrice}) => {
         </View>
       </View>
       <View style={{flex: 1, flexDirection: 'row-reverse'}}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={handleClosePress}>
           <CloseSVG width={20} height={20} style={styles.header_icon} />
         </TouchableOpacity>
       </View>

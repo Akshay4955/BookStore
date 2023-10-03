@@ -35,7 +35,9 @@ const SearchResult = ({navigation}) => {
       <FlatList
         data={data}
         numColumns={2}
-        renderItem={({item}) => <BookCard value={item} />}
+        renderItem={({item}) => (
+          <BookCard value={item} navigation={navigation} />
+        )}
       />
     </View>
   );

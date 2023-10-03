@@ -27,15 +27,13 @@ const BookInfoModal = ({modalVisible, handleBackPress, item}) => {
         </TouchableOpacity>
         <View style={styles.modal}>
           <View style={styles.header}>
-            <Image
-              source={{uri: item.value.imageUrl}}
-              style={styles.image}></Image>
+            <Image source={{uri: item.imageUrl}} style={styles.image}></Image>
             <View style={styles.name_container}>
-              <Text style={styles.book_name}>{item.value.title}</Text>
-              <Text style={styles.author_name}>by {item.value.author}</Text>
+              <Text style={styles.book_name}>{item.title}</Text>
+              <Text style={styles.author_name}>by {item.author}</Text>
             </View>
           </View>
-          <Text style={styles.description}>{item.value.description}</Text>
+          <Text style={styles.description}>{item.description}</Text>
         </View>
       </View>
     </Modal>

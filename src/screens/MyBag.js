@@ -43,7 +43,7 @@ const MyBag = ({navigation}) => {
 
   return (
     <View style={styles.screen_container}>
-      <View style={styles.screen_container}>
+      <View style={styles.bag_container}>
         <Header navigation={navigation} />
         <View style={styles.home_text_box}>
           <TouchableOpacity onPress={handleBackPress}>
@@ -62,25 +62,27 @@ const MyBag = ({navigation}) => {
             />
           )}
         />
+        <View style={styles.customer_details_add}>
+          <TouchableOpacity
+            onPress={handleCustomerPress}
+            style={styles.customer_details_box}>
+            <Text style={styles.customer_text}>Customer Details</Text>
+            <AddSVG width={20} height={20} style={styles.header_icon} />
+          </TouchableOpacity>
+        </View>
       </View>
-      <View>
-        <TouchableOpacity
-          onPress={handleCustomerPress}
-          style={styles.customer_details_box}>
-          <Text style={styles.customer_text}>Customer Details</Text>
-          <AddSVG width={20} height={20} style={styles.header_icon} />
-        </TouchableOpacity>
-        {customerDetails ? (
-          <View style={styles.customer_box}>
-            <Text style={styles.info_text}>{customerDetails.name}</Text>
-            <Text style={styles.info_text}>{customerDetails.phoneNumber}</Text>
-            <Text style={styles.info_text}>
-              {customerDetails.address}, {customerDetails.landmark},{' '}
-              {customerDetails.locality}, {customerDetails.city},{' '}
-              {customerDetails.pinCode},
-            </Text>
-          </View>
-        ) : null}
+      {customerDetails ? (
+        <View style={styles.customer_box}>
+          <Text style={styles.info_text}>{customerDetails.name}</Text>
+          <Text style={styles.info_text}>{customerDetails.phoneNumber}</Text>
+          <Text style={styles.info_text}>
+            {customerDetails.address}, {customerDetails.landmark},{' '}
+            {customerDetails.locality}, {customerDetails.city},{' '}
+            {customerDetails.pinCode},
+          </Text>
+        </View>
+      ) : null}
+      <View style={styles.place_order_box}>
         <View style={styles.customer_details_box}>
           <View>
             <Text style={styles.total_text}>Total</Text>

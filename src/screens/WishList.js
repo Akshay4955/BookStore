@@ -1,5 +1,5 @@
 import {View, Text, FlatList, TouchableOpacity} from 'react-native';
-import React, {useContext, useState} from 'react';
+import React, {useContext} from 'react';
 import GlobalStylesheet from '../utilities/GlobalStyleSheet';
 import BackSVG from '../assets/images/Back.svg';
 import BookCard from '../components/BookCard';
@@ -27,7 +27,9 @@ const WishList = ({navigation}) => {
       <FlatList
         data={data}
         numColumns={2}
-        renderItem={({item}) => <BookCard value={item} />}
+        renderItem={({item}) => (
+          <BookCard value={item} navigation={navigation} />
+        )}
       />
     </View>
   );

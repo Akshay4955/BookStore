@@ -1,12 +1,12 @@
 import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
-import React, {useContext, useState} from 'react';
+import React, {useContext, useState, useEffect} from 'react';
 import * as Constant from '../utilities/Constant';
 import AddWishlist from '../assets/images/Add to whishlist.svg';
 import AddedWishlist from '../assets/images/Added to wishlist.svg';
 import BookInfoModal from '../components/BookInfoModal';
 import {ListContext} from '../navigation/ListProvider';
 
-const BookCard = value => {
+const BookCard = ({value, navigation}) => {
   const {
     addToCart,
     removeFromCart,
@@ -15,17 +15,16 @@ const BookCard = value => {
     addToWishlist,
     removeFromWishlist,
   } = useContext(ListContext);
-  const [addToBag, setAddToBag] = useState(
-    cartItems.includes(value.value.title),
-  );
+  const [addToBag, setAddToBag] = useState(cartItems.includes(value.title));
   const [addtoWishList, setAddToWishList] = useState(
-    wishlistItems.includes(value.value.title),
+    wishlistItems.includes(value.title),
   );
   const [showModal, setShowModal] = useState(false);
 
   const handleItemPress = () => {
     setShowModal(true);
   };
+
   const handleBackPress = () => {
     setShowModal(false);
   };
@@ -33,26 +32,30 @@ const BookCard = value => {
   const handleAddWishListPress = () => {
     setAddToWishList(!addtoWishList);
     addtoWishList
-      ? removeFromWishlist(value.value.title)
-      : addToWishlist(value.value.title);
+      ? removeFromWishlist(value.title)
+      : addToWishlist(value.title);
   };
 
   const handleAddToBagPress = () => {
     setAddToBag(!addToBag);
-    addToBag ? removeFromCart(value.value.title) : addToCart(value.value.title);
+    addToBag ? removeFromCart(value.title) : addToCart(value.title);
   };
 
+  useEffect(() => {
+    navigation.addListener('focus', () => {
+      setAddToBag(cartItems.includes(value.title));
+      setAddToWishList(wishlistItems.includes(value.title));
+    });
+  }, [cartItems, wishlistItems]);
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={handleItemPress}>
         <View style={styles.image_container}>
-          <Image
-            source={{uri: value.value.imageUrl}}
-            style={styles.image}></Image>
+          <Image source={{uri: value.imageUrl}} style={styles.image}></Image>
         </View>
-        <Text style={styles.book_name}>{value.value.title}</Text>
-        <Text style={styles.author_name}>by {value.value.author}</Text>
-        <Text style={styles.price}>Rs {value.value.price}</Text>
+        <Text style={styles.book_name}>{value.title}</Text>
+        <Text style={styles.author_name}>by {value.author}</Text>
+        <Text style={styles.price}>Rs {value.price}</Text>
       </TouchableOpacity>
       {addToBag ? (
         <TouchableOpacity

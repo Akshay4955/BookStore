@@ -29,6 +29,7 @@ export const margin = {
   verySmall: 5,
   small: 8,
   medium: 12,
+  big: 16,
   large: 22,
   modalMargin: 50,
   item_no: 27,
@@ -45,6 +46,7 @@ export const width = {
   BookCard: scaleWidth(158),
   search: scaleWidth(320),
   extralarge: scaleWidth(360),
+  customer_box: scaleWidth(350),
   full: scaleWidth(410),
 };
 export const height = {

@@ -7,6 +7,10 @@ const GlobalStylesheet = () => {
       flex: 1,
       backgroundColor: Constant.Color.backgroundColor,
     },
+    bag_container: {
+      flex: 3,
+      backgroundColor: Constant.Color.backgroundColor,
+    },
     home_header: {
       flexDirection: 'row',
       height: Constant.height.small,
@@ -113,9 +117,13 @@ const GlobalStylesheet = () => {
       margin: Constant.margin.small,
     },
     customer_details_box: {
+      height: Constant.height.medium,
+      width: Constant.width.search,
+      marginLeft: Constant.margin.big,
+      backgroundColor: Constant.Color.backgroundColor,
       flexDirection: 'row',
-      margin: Constant.margin.small,
       justifyContent: 'space-between',
+      alignItems: 'center',
     },
     items_no: {
       fontFamily: 'Lato',
@@ -200,6 +208,20 @@ const GlobalStylesheet = () => {
       marginLeft: Constant.margin.large,
       color: Constant.Color.black,
       marginTop: Constant.margin.large,
+    },
+    customer_details_add: {
+      height: Constant.height.large,
+      width: Constant.width.customer_box,
+      marginLeft: Constant.margin.verySmall,
+      backgroundColor: Constant.Color.image_Backgorund,
+      justifyContent: 'center',
+    },
+    place_order_box: {
+      flex: 1,
+      height: Constant.height.small,
+      marginBottom: Constant.margin.medium,
+      flexDirection: 'column',
+      justifyContent: 'flex-end',
     },
   });
 };

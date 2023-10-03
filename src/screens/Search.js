@@ -26,6 +26,9 @@ const Search = ({navigation}) => {
     navigation.goBack();
   };
 
+  const handleRecentPress = item => {
+    navigation.navigate('SearchResult', {text: item});
+  };
   return (
     <View style={styles.screen_container}>
       <View style={styles.home_header}>
@@ -51,7 +54,9 @@ const Search = ({navigation}) => {
       <FlatList
         data={recentSearch}
         renderItem={({item}) => (
-          <Text style={styles.recent_search_text}>{item}</Text>
+          <TouchableOpacity onPress={() => handleRecentPress(item)}>
+            <Text style={styles.recent_search_text}>{item}</Text>
+          </TouchableOpacity>
         )}
       />
     </View>
