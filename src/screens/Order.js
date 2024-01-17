@@ -6,8 +6,10 @@ import ContactSVG from '../assets/images/contact.svg';
 import AddressSVG from '../assets/images/Address.svg';
 import GlobalStylesheet from '../utilities/GlobalStyleSheet';
 import Header from '../components/Header';
+import {useTranslation} from 'react-i18next';
 
 const Order = ({navigation}) => {
+  const {t} = useTranslation();
   const styles = GlobalStylesheet();
   const handleContinueShopping = () => {
     navigation.navigate('Home');
@@ -18,7 +20,7 @@ const Order = ({navigation}) => {
       <Header navigation={navigation} />
       <View style={styles.order_container}>
         <OrderSVG width={250} height={250} />
-        <Text style={styles.home_text}>Order Placed Successfully</Text>
+        <Text style={styles.home_text}>{t('Order placed successfully')}</Text>
         <Text style={styles.order_text}>
           hurray!!! your order is confirmed the order id is #{orderNumber} save
           the order id for further communication..
@@ -26,7 +28,7 @@ const Order = ({navigation}) => {
         <TouchableOpacity
           style={styles.continue_button}
           onPress={handleContinueShopping}>
-          <Text style={styles.placeOrder_text}>CONTINUE SHOPPING</Text>
+          <Text style={styles.placeOrder_text}>{t('Continue Shopping')}</Text>
         </TouchableOpacity>
       </View>
       <View style={styles.info_container}>

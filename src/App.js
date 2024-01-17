@@ -8,6 +8,9 @@ import {
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import SplashScreen from 'react-native-splash-screen';
 import Index from './navigation/Index';
+import remoteConfig from '@react-native-firebase/remote-config';
+import './utilities/i18n';
+import 'intl-pluralrules';
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';

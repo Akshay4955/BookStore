@@ -6,8 +6,10 @@ import SearchSVG from '../assets/images/Type search.svg';
 import * as Constant from '../utilities/Constant';
 import {FlatList} from 'react-native-gesture-handler';
 import {ListContext} from '../navigation/ListProvider';
+import {useTranslation} from 'react-i18next';
 
 const Search = ({navigation}) => {
+  const {t} = useTranslation();
   const styles = GlobalStylesheet();
   const {recentSearch, setRecentSearch} = useContext(ListContext);
   const [text, onChangeText] = useState('');
@@ -45,12 +47,12 @@ const Search = ({navigation}) => {
         <TextInput
           style={styles.text_input}
           value={text}
-          placeholder="Search"
+          placeholder={t('Search')}
           placeholderTextColor={Constant.Color.placeholder}
           onChangeText={onChangeText}
           onSubmitEditing={handleSubmit}></TextInput>
       </View>
-      <Text style={styles.search_text}>Recently Searched</Text>
+      <Text style={styles.search_text}>{t('Recently Searched')}</Text>
       <FlatList
         data={recentSearch}
         renderItem={({item}) => (

@@ -5,12 +5,18 @@ import {
   View,
   Image,
   TouchableOpacity,
+  Button,
 } from 'react-native';
 import React from 'react';
 import * as Constant from '../utilities/Constant';
 import CloseSVG from '../assets/images/Close.svg';
+import {useTranslation} from 'react-i18next';
 
 const BookInfoModal = ({modalVisible, handleBackPress, item}) => {
+  const {t, i18n} = useTranslation();
+  const handleLanguageChange = language => {
+    i18n.changeLanguage(language);
+  };
   return (
     <Modal
       animationType="slide"
@@ -34,6 +40,21 @@ const BookInfoModal = ({modalVisible, handleBackPress, item}) => {
             </View>
           </View>
           <Text style={styles.description}>{item.description}</Text>
+          <Button
+            onPress={() => handleLanguageChange('Hindi')}
+            title="भाषा को हिंदी में बदलें"
+            color="#841584"
+          />
+          <Button
+            onPress={() => handleLanguageChange('English')}
+            title="Change Language to English"
+            color="#841372"
+          />
+          <Button
+            onPress={() => handleLanguageChange('Marathi')}
+            title="भाषा बदलून मराठी करा"
+            color="#841835"
+          />
         </View>
       </View>
     </Modal>
