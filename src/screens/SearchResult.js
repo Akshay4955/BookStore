@@ -6,8 +6,10 @@ import BackSVG from '../assets/images/Back.svg';
 import {useRoute} from '@react-navigation/native';
 import {ListContext} from '../navigation/ListProvider';
 import Header from '../components/Header';
+import {useTranslation} from 'react-i18next';
 
 const SearchResult = ({navigation}) => {
+  const {t} = useTranslation();
   const {items} = useContext(ListContext);
   const route = useRoute();
   const text = route?.params.text;
@@ -30,7 +32,9 @@ const SearchResult = ({navigation}) => {
         <TouchableOpacity onPress={handleBackPress}>
           <BackSVG width={27} height={27} style={styles.header_icon} />
         </TouchableOpacity>
-        <Text style={styles.search_result_text}>Showing result for {text}</Text>
+        <Text style={styles.search_result_text}>
+          {t('Showing result for')} {text}
+        </Text>
       </View>
       <FlatList
         data={data}

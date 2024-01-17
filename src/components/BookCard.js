@@ -5,8 +5,10 @@ import AddWishlist from '../assets/images/Add to whishlist.svg';
 import AddedWishlist from '../assets/images/Added to wishlist.svg';
 import BookInfoModal from '../components/BookInfoModal';
 import {ListContext} from '../navigation/ListProvider';
+import {useTranslation} from 'react-i18next';
 
 const BookCard = ({value, navigation}) => {
+  const {t} = useTranslation();
   const {
     addToCart,
     removeFromCart,
@@ -61,7 +63,7 @@ const BookCard = ({value, navigation}) => {
         <TouchableOpacity
           style={styles.addedToBag_button}
           onPress={handleAddToBagPress}>
-          <Text style={styles.addedToBag_text}>ADDED TO BAG</Text>
+          <Text style={styles.addedToBag_text}>{t('Added to Bag')}</Text>
         </TouchableOpacity>
       ) : (
         <View style={styles.button_container}>
@@ -80,7 +82,7 @@ const BookCard = ({value, navigation}) => {
           )}
 
           <TouchableOpacity style={styles.button} onPress={handleAddToBagPress}>
-            <Text style={styles.button_text}>ADD TO BAG</Text>
+            <Text style={styles.button_text}>{t('Add to Bag')}</Text>
           </TouchableOpacity>
         </View>
       )}

@@ -6,7 +6,6 @@ import Order from '../screens/Order';
 import Search from '../screens/Search';
 import SearchResult from '../screens/SearchResult';
 import WishList from '../screens/WishList';
-import ListProvider from '../navigation/ListProvider';
 
 const Stack = createStackNavigator();
 const AppStack = () => {

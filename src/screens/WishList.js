@@ -5,8 +5,10 @@ import BackSVG from '../assets/images/Back.svg';
 import BookCard from '../components/BookCard';
 import {ListContext} from '../navigation/ListProvider';
 import Header from '../components/Header';
+import {useTranslation} from 'react-i18next';
 
 const WishList = ({navigation}) => {
+  const {t} = useTranslation();
   const styles = GlobalStylesheet();
   const {items, wishlistItems} = useContext(ListContext);
   const data = items.filter(book => wishlistItems.includes(book.title));
@@ -21,8 +23,10 @@ const WishList = ({navigation}) => {
         <TouchableOpacity onPress={handleBackPress}>
           <BackSVG width={27} height={27} style={styles.header_icon} />
         </TouchableOpacity>
-        <Text style={styles.home_text}>WishList</Text>
-        <Text style={styles.items_no}>{data.length} items</Text>
+        <Text style={styles.home_text}>{t('Wishlist')}</Text>
+        <Text style={styles.items_no}>
+          {data.length} {t('Items')}
+        </Text>
       </View>
       <FlatList
         data={data}
